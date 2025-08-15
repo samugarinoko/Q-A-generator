@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q&Aジェネレーター</title>
+    <link rel="stylesheet" href="generator_style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Q&Aジェネレーター</h1>
+
+        <div class="input-section">
+            <div class="input-group">
+                <label for="question">質問 (Q)</label>
+                <input type="text" id="question" placeholder="質問文を入力してください">
+            </div>
+            <div class="input-group">
+                <label for="answer">答え (A)</label>
+                <input type="text" id="answer" placeholder="答えを入力してください">
+            </div>
+            <button id="add-button">Q&Aを追加</button>
+        </div>
+
+        <div class="preview-section">
+            <h2>プレビュー</h2>
+            <div id="preview-container" class="qa-container">
+                </div>
+        </div>
+
+        <div class="code-section">
+            <h2>生成されたHTMLコード</h2>
+            <textarea id="output-code" readonly></textarea>
+            <button id="copy-button">コードをコピー</button>
+        </div>
+    </div>
+
+    <script src="generator_script.js"></script>
+</body>
+</html>
