@@ -7,32 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="container">
         <h1>Q&Aジェネレーター</h1>
 
         <div class="input-section">
-            <div class="input-group">
-                <label for="question">質問 (Q)</label>
-                <input type="text" id="question" placeholder="質問文を入力してください">
-            </div>
-            <div class="input-group">
-                <label for="answer">答え (A)</label>
-                <input type="text" id="answer" placeholder="答えを入力してください">
-            </div>
-            <button id="add-button">Q&Aを追加</button>
+            <h2>質問と答えを追加</h2>
+            <input type="text" id="questionInput" placeholder="質問を入力">
+            <input type="text" id="answerInput" placeholder="答えを入力">
+            <button class="add-button">追加</button>
         </div>
 
         <div class="preview-section">
             <h2>プレビュー</h2>
-            <div id="preview-container" class="qa-container">
-                </div>
+            <div id="preview" class="preview-container">
+                <p style="text-align: center; color: #888;">ここにQ&Aが表示されます</p>
+            </div>
         </div>
 
-        <div class="code-section">
-            <h2>生成されたHTMLコード</h2>
-            <textarea id="output-code" readonly></textarea>
-            <button id="copy-button">コードをコピー</button>
+        <div class="generator-section">
+            <h2>コード生成</h2>
+            <button class="generate-button">コードを生成</button>
+            <div id="codeOutput" class="code-output" style="display:none;"></div>
         </div>
     </div>
 
