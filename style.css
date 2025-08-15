@@ -1,0 +1,223 @@
+/* generator_style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.input-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#add-button {
+    background-color: #5ab1e7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#add-button:hover {
+    background-color: #4a9bdc;
+}
+
+.preview-section, .code-section {
+    margin-bottom: 20px;
+}
+
+#preview-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    min-height: 100px;
+    background-color: #fff;
+}
+
+#output-code {
+    width: calc(100% - 20px);
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    resize: vertical;
+}
+
+#copy-button {
+    background-color: #ff5b8e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+#copy-button:hover {
+    background-color: #e74a7d;
+}
+
+/* プレビュー用のQ&Aスタイル (前回と同じ) */
+.qa-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.qa-item {
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.qa-item:last-child {
+    border-bottom: none;
+}
+
+.question-row {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+
+.question-row:hover {
+    background-color: #f9f9f9;
+}
+
+.qa-label {
+    font-weight: bold;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 1.2em;
+    flex-shrink: 0;
+}
+
+.q-label {
+    background-color: #5ab1e7;
+}
+
+.a-label {
+    background-color: #ff5b8e;
+}
+
+.question-text {
+    margin: 0 20px;
+    flex-grow: 1;
+    font-size: 1.1em;
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    font-size: 2em;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.toggle-button.expanded {
+    transform: rotate(45deg);
+}
+
+.answer-row {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 20px 15px 20px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.answer-row.visible {
+    max-height: 100px;
+    opacity: 1;
+}
+
+.answer-text {
+    margin: 0 20px;
+    padding-top: 5px;
+    flex-grow: 1;
+    font-size: 1em;
+}
+
+.remove-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff5b8e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* 最初は非表示 */
+    transition: opacity 0.3s;
+}
+
+.qa-item:hover .remove-button {
+    opacity: 1; /* ホバー時に表示 */
+}
