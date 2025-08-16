@@ -21,8 +21,20 @@ h1 {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
-input[type="text"] {
-    width: calc(100% - 120px);
+.input-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #eee;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+.input-item label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.input-item input[type="text"] {
+    width: calc(100% - 100px);
     padding: 8px;
     margin-right: 10px;
     border: 1px solid #ccc;
@@ -35,12 +47,12 @@ button {
     border-radius: 4px;
     color: white;
 }
-.add-button {
+.add-new-button {
     background-color: #4CAF50;
+    margin-top: 10px;
 }
 .remove-button {
     background-color: #f44336;
-    margin-left: 10px;
 }
 .generate-button {
     background-color: #008CBA;
