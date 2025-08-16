@@ -1,37 +1,79 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const questionInput = document.getElementById('questionInput');
-    const answerInput = document.getElementById('answerInput');
-    const addButton = document.getElementById('addButton');
+    const addNewButton = document.getElementById('addNewButton');
+    const inputContainer = document.getElementById('inputContainer');
     const preview = document.getElementById('preview');
     const generateButton = document.getElementById('generateButton');
     const codeOutput = document.getElementById('codeOutput');
     
-    let qnaData = [];
+    // 最初の入力フィールドセットを追加
+    addInputFields();
 
-    // 追加ボタンのクリックイベント
-    addButton.addEventListener('click', () => {
-        const question = questionInput.value.trim();
-        const answer = answerInput.value.trim();
-        if (question && answer) {
-            qnaData.push({ question, answer });
-            updatePreview();
-            questionInput.value = '';
-            answerInput.value = '';
-        }
-    });
+    // 「新しいQ&Aを追加」ボタンのイベントリスナー
+    addNewButton.addEventListener('click', addInputFields);
 
-    // プレビュー内の削除ボタンのクリックイベント（イベント委譲を使用）
-    preview.addEventListener('click', (event) => {
+    // 入力フィールドの削除ボタンのイベントリスナー（イベント委譲）
+    inputContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('remove-button')) {
-            const index = event.target.dataset.index;
-            removeQnA(index);
+            event.target.closest('.input-item').remove();
+            updatePreview(); // プレビューも更新
         }
     });
 
-    // コード生成ボタンのクリックイベント
-    generateButton.addEventListener('click', () => {
+    // 質問と答えの入力フィールドの変更を監視してプレビューを更新
+    inputContainer.addEventListener('input', updatePreview);
+
+    // コード生成ボタンのイベントリスナー
+    generateButton.addEventListener('click', generateCode);
+
+    function addInputFields() {
+        const inputItem = document.createElement('div');
+        inputItem.classList.add('input-item');
+        inputItem.innerHTML = `
+            <label>質問:</label>
+            <input type="text" class="question-input" placeholder="質問を入力">
+            <label>答え:</label>
+            <input type="text" class="answer-input" placeholder="答えを入力">
+            <button class="remove-button">削除</button>
+        `;
+        inputContainer.appendChild(inputItem);
+        updatePreview(); // 新しいフィールドが追加されたらプレビューを更新
+    }
+
+    function updatePreview() {
+        const qnaData = getQnADataFromInputs();
+        preview.innerHTML = '';
         if (qnaData.length === 0) {
-            alert('Q&Aを最低1つ追加してください。');
+            preview.innerHTML = '<p style="text-align: center; color: #888;">ここにQ&Aが表示されます</p>';
+        } else {
+            qnaData.forEach((item) => {
+                const qnaDiv = document.createElement('div');
+                qnaDiv.classList.add('question-item');
+                qnaDiv.innerHTML = `
+                    <span>Q: ${item.question}</span>
+                    <button class="remove-button">削除</button>
+                `;
+                preview.appendChild(qnaDiv);
+            });
+        }
+    }
+    
+    function getQnADataFromInputs() {
+        const inputs = document.querySelectorAll('.input-item');
+        const data = [];
+        inputs.forEach(item => {
+            const question = item.querySelector('.question-input').value.trim();
+            const answer = item.querySelector('.answer-input').value.trim();
+            if (question && answer) {
+                data.push({ question, answer });
+            }
+        });
+        return data;
+    }
+
+    function generateCode() {
+        const qnaData = getQnADataFromInputs();
+        if (qnaData.length === 0) {
+            alert('Q&Aを最低1つ入力してください。');
             return;
         }
 
@@ -134,27 +176,5 @@ document.querySelectorAll('.question-box').forEach(button => {
         
         codeOutput.textContent = styleCode + htmlCode;
         codeOutput.style.display = 'block';
-    });
-
-    function removeQnA(index) {
-        qnaData.splice(index, 1);
-        updatePreview();
-    }
-
-    function updatePreview() {
-        preview.innerHTML = '';
-        if (qnaData.length === 0) {
-            preview.innerHTML = '<p style="text-align: center; color: #888;">ここにQ&Aが表示されます</p>';
-        } else {
-            qnaData.forEach((item, index) => {
-                const qnaDiv = document.createElement('div');
-                qnaDiv.classList.add('question-item');
-                qnaDiv.innerHTML = `
-                    <span>Q: ${item.question}</span>
-                    <button class="remove-button" data-index="${index}">削除</button>
-                `;
-                preview.appendChild(qnaDiv);
-            });
-        }
     }
 });
