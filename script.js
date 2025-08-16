@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ボタンのIDを正確に指定して要素を取得
     const addNewButton = document.getElementById('addNewButton');
     const inputContainer = document.getElementById('inputContainer');
     const preview = document.getElementById('preview');
@@ -9,7 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     addInputFields();
 
     // 「新しいQ&Aを追加」ボタンのイベントリスナー
-    addNewButton.addEventListener('click', addInputFields);
+    addNewButton.addEventListener('click', () => {
+        addInputFields();
+        updatePreview();
+    });
 
     // 入力フィールドの削除ボタンのイベントリスナー（イベント委譲）
     inputContainer.addEventListener('click', (event) => {
@@ -36,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="remove-button">削除</button>
         `;
         inputContainer.appendChild(inputItem);
-        updatePreview(); // 新しいフィールドが追加されたらプレビューを更新
     }
 
     function updatePreview() {
